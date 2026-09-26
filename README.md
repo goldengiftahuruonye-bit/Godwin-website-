@@ -1,4 +1,4 @@
-# Atelier Vance — Architectural Design & Spatial Systems
+# Richard Godwin — Architectural Design & Spatial Systems
 
 This is a modern, responsive React + TypeScript + Tailwind CSS web application built with Vite.
 

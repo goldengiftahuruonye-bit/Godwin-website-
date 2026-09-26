@@ -141,7 +141,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
           {activeTab === 'walkthrough' && (
             <div className="text-xs text-[#b8bac4] space-y-2">
               <p>
-                In this preview session, Alexander Vance demonstrates live redline analysis on an 8-story cross-laminated timber hybrid civic building in Zurich.
+                In this preview session, Richard Godwin demonstrates live redline analysis on an 8-story cross-laminated timber hybrid civic building in Zurich.
               </p>
               <p>
                 Watch how we deconstruct the building envelope into three primary thermal zones, re-route plumbing risers into modular structural cavities, and specify seismic dowel pin details.
@@ -178,11 +178,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               </div>
               <div className="flex items-center gap-2 text-[#eae7e1]">
                 <span className="material-symbols-outlined text-[16px] text-[#c8a265]">check</span>
-                <span>Full access to Vance Studio Revit / Rhino detail standards ($400+ value)</span>
+                <span>Full access to Godwin Studio Revit / Rhino detail standards ($400+ value)</span>
               </div>
               <div className="flex items-center gap-2 text-[#eae7e1]">
                 <span className="material-symbols-outlined text-[16px] text-[#c8a265]">check</span>
-                <span>Direct bi-weekly async Loom & voice review access with Alexander Vance</span>
+                <span>Direct bi-weekly async Loom & voice review access with Richard Godwin</span>
               </div>
             </div>
           )}

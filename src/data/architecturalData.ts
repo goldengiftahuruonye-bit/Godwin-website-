@@ -15,15 +15,15 @@ import studioOsCover from '../assets/images/studio_os_cover_1790155091232.jpg';
 import tectonicBookCover from '../assets/images/tectonic_book_cover_1790155101452.jpg';
 
 export const ARCHITECT_INFO = {
-  name: 'Alexander Vance',
+  name: 'Richard Godwin',
   titles: 'Principal Architect & Spatial Theorist',
   credentials: 'AIA, RIBA, SIA',
-  studio: 'Atelier Vance',
+  studio: 'Atelier Godwin',
   location: 'Zurich & New York',
   experience: '15+ Years of Practice',
   portrait: architectPortrait,
   videoThumbnail: studioCritiqueVideo,
-  bioSummary: `Over the past 15+ years, Alexander Vance has directed spatial masterplans, monolithic private residences, and cultural pavilions across North America, the Swiss Alps, and Scandinavia. His practice operates at the intersection of geological permanence, daylight choreography, and tectonic precision.`,
+  bioSummary: `Over the past 15+ years, Richard Godwin has directed spatial masterplans, monolithic private residences, and cultural pavilions across North America, the Swiss Alps, and Scandinavia. His practice operates at the intersection of geological permanence, daylight choreography, and tectonic precision.`,
   bioExtended: `Through rigorous drawing analysis, physical scale casting, and direct spatial masterclasses, he has advised over 300+ practicing architects and computational design leads worldwide, teaching the art of quiet proportion, detailing discipline, and resilient architectural assemblies.`,
   mentorship: {
     cohort: 'Cohort 04',
@@ -97,7 +97,7 @@ export const FEATURED_PROJECTS: Project[] = [
     description: 'Technical isometric drafting exploring public ramp circulation, daylight filtration, and HVAC tectonic integration in a multi-level civic gallery.',
     fullNarrative: 'Detailed section analysis published in the Architectural Association Journal, demonstrating how concealed mechanical shafts can double as natural acoustic baffle resonators.',
     image: axonometricDrawing,
-    photographerCredit: 'Atelier Vance Archive'
+    photographerCredit: 'Atelier Godwin Archive'
   },
   {
     id: 'basalt-residence',
@@ -219,7 +219,7 @@ export const PEER_REVIEWS: PeerReview[] = [
     firm: 'Monolith Architecture',
     projectOrCohort: 'Cohort 02 Alumni',
     rating: 5,
-    quote: 'Alexander’s critique transformed our design system and construction detailing in less than 3 weeks. His eye for tectonic honesty is unmatched.',
+    quote: 'Richard’s critique transformed our design system and construction detailing in less than 3 weeks. His eye for tectonic honesty is unmatched.',
     date: 'August 2026'
   },
   {

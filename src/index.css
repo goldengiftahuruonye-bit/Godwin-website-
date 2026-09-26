@@ -1,13 +1,57 @@
 @import "tailwindcss";
 
 @layer base {
+  :root,
+  html.dark {
+    color-scheme: dark;
+    --bg-app: #0e0f10;
+    --bg-shell: #121314;
+    --bg-header: rgba(18, 19, 20, 0.85);
+    --bg-card: #18191c;
+    --bg-card-subtle: #141517;
+    --bg-card-hover: #22252a;
+    --bg-pill: #1b1c1f;
+    --border-subtle: #25272b;
+    --border-card: #282a30;
+    --border-strong: #383c45;
+    --text-primary: #f5f4ef;
+    --text-secondary: #9ea2af;
+    --text-muted: #6e7280;
+    --accent: #c8a265;
+    --accent-hover: #dfb97d;
+    --tag-bg: #1f2125;
+    --tag-border: #2d3036;
+  }
+
+  html.light {
+    color-scheme: light;
+    --bg-app: #ebe8e1;
+    --bg-shell: #faf9f6;
+    --bg-header: rgba(250, 249, 246, 0.90);
+    --bg-card: #ffffff;
+    --bg-card-subtle: #f3f1eb;
+    --bg-card-hover: #eae7de;
+    --bg-pill: #f2efe7;
+    --border-subtle: #e2ded4;
+    --border-card: #ded9ce;
+    --border-strong: #cec7b9;
+    --text-primary: #141517;
+    --text-secondary: #4a4e58;
+    --text-muted: #797e8c;
+    --accent: #b08538;
+    --accent-hover: #966e27;
+    --tag-bg: #ece8df;
+    --tag-border: #ded8cb;
+  }
+
   html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #121314;
-    color: #eae7e1;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.2s ease;
   }
   
   body {
@@ -45,19 +89,98 @@
   background-image: radial-gradient(rgba(200, 162, 101, 0.12) 1px, transparent 1px);
 }
 
+html.light .bg-architect-grid {
+  background-image: 
+    linear-gradient(to right, rgba(176, 133, 56, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(176, 133, 56, 0.06) 1px, transparent 1px);
+}
+
+html.light .bg-architect-dots {
+  background-image: radial-gradient(rgba(176, 133, 56, 0.15) 1px, transparent 1px);
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #141517;
+  background: var(--bg-card-subtle);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2f3136;
+  background: var(--border-strong);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c8a265;
+  background: var(--accent);
+}
+
+/* Light mode architectural palette overrides */
+html.light {
+  /* Surfaces & Backgrounds */
+  & .bg-\[\#0e0f10\] { background-color: #ebe8e1 !important; }
+  & .bg-\[\#121314\] { background-color: #faf9f6 !important; }
+  & .bg-\[\#121314\]\/85 { background-color: rgba(250, 249, 246, 0.88) !important; }
+  & .bg-\[\#121314\]\/90 { background-color: rgba(250, 249, 246, 0.92) !important; }
+  & .bg-\[\#121314\]\/95 { background-color: rgba(250, 249, 246, 0.96) !important; }
+  & .bg-\[\#131415\] { background-color: #faf9f6 !important; }
+  & .bg-\[\#141517\] { background-color: #f3f0e8 !important; }
+  & .bg-\[\#161719\] { background-color: #f8f6f0 !important; }
+  & .bg-\[\#18191c\] { background-color: #ffffff !important; }
+  & .bg-\[\#1a1c1f\] { background-color: #ffffff !important; }
+  & .bg-\[\#1a1c20\] { background-color: #ffffff !important; }
+  & .bg-\[\#1b1c1f\] { background-color: #f3f0e8 !important; }
+  & .bg-\[\#1c1d20\] { background-color: #f3f0e8 !important; }
+  & .bg-\[\#1f2125\] { background-color: #eae6dc !important; }
+  & .bg-\[\#202227\] { background-color: #e9e5db !important; }
+  & .bg-\[\#222429\] { background-color: #e6e2d8 !important; }
+  & .bg-\[\#22242a\] { background-color: #e7e3d9 !important; }
+  & .bg-\[\#24262b\] { background-color: #eae6dc !important; }
+  & .bg-\[\#24262c\] { background-color: #eae6dc !important; }
+  & .bg-\[\#27292f\] { background-color: #e2ded4 !important; }
+  & .hover\:bg-\[\#24262b\]:hover { background-color: #e4e0d5 !important; }
+  & .hover\:bg-\[\#27292e\]:hover { background-color: #e2ded4 !important; }
+  & .hover\:bg-\[\#222429\]:hover { background-color: #e4e0d5 !important; }
+  & .hover\:bg-\[\#22242a\]:hover { background-color: #e4e0d5 !important; }
+  & .hover\:bg-\[\#2c2f36\]:hover { background-color: #ded9cd !important; }
+
+  /* Typography */
+  & .text-\[\#f5f4ef\] { color: #141517 !important; }
+  & .text-\[\#eae7e1\] { color: #1a1b1e !important; }
+  & .text-\[\#edebe6\] { color: #1a1b1e !important; }
+  & .text-\[\#d8dadf\] { color: #2e3036 !important; }
+  & .text-\[\#9ea2af\] { color: #4a4e58 !important; }
+  & .text-\[\#8e929f\] { color: #585c67 !important; }
+  & .text-\[\#9396a1\] { color: #585c67 !important; }
+  & .text-\[\#8b8e9b\] { color: #585c67 !important; }
+  & .text-\[\#7d818f\] { color: #6e7381 !important; }
+  & .text-\[\#858895\] { color: #6e7381 !important; }
+  & .text-\[\#858997\] { color: #6e7381 !important; }
+  & .text-\[\#787c8a\] { color: #6e7381 !important; }
+  & .text-\[\#676b77\] { color: #878c99 !important; }
+  & .text-\[\#595c67\] { color: #878c99 !important; }
+  & .text-\[\#555864\] { color: #9da2ad !important; }
+
+  /* Borders */
+  & .border-\[\#212328\] { border-color: #ded9ce !important; }
+  & .border-\[\#222429\] { border-color: #ded9ce !important; }
+  & .border-\[\#23252a\] { border-color: #e2ded4 !important; }
+  & .border-\[\#25272b\] { border-color: #e2ded4 !important; }
+  & .border-\[\#25272b\]\/60 { border-color: rgba(226, 222, 212, 0.7) !important; }
+  & .border-\[\#26282e\] { border-color: #e4e0d6 !important; }
+  & .border-\[\#282a30\] { border-color: #ded9ce !important; }
+  & .border-\[\#292c32\] { border-color: #ded9ce !important; }
+  & .border-\[\#2a2d33\] { border-color: #ded9ce !important; }
+  & .border-\[\#2d3036\] { border-color: #d6d0c3 !important; }
+  & .border-\[\#30333b\] { border-color: #d6d0c3 !important; }
+  & .border-\[\#33363e\] { border-color: #cec7b9 !important; }
+  & .border-\[\#383c45\] { border-color: #cec7b9 !important; }
+  & .hover\:border-\[\#383c45\]:hover { border-color: #b08538 !important; }
+
+  /* Elevation Shadows */
+  & .shadow-sm { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03) !important; }
+  & .shadow-md { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important; }
+  & .shadow-xl { box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08) !important; }
+  & .shadow-2xl { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1) !important; }
 }
 

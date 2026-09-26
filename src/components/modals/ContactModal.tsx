@@ -44,7 +44,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         <div className="flex items-center justify-between border-b border-[#26282e] pb-3 mb-4">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[20px] text-[#c8a265]">architecture</span>
-            <h3 className="font-semibold text-base text-[#f5f4ef]">Atelier Vance — Inquire</h3>
+            <h3 className="font-semibold text-base text-[#f5f4ef]">Richard Godwin — Atelier Inquire</h3>
           </div>
           <button
             onClick={onClose}
@@ -61,7 +61,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
             <h4 className="text-lg font-bold text-[#f5f4ef]">Inquiry Dispatched</h4>
             <p className="text-xs text-[#9a9ea9] max-w-xs mt-1">
-              Alexander Vance and the studio partners will review your project brief and respond within 24 business hours.
+              Richard Godwin and the atelier partners will review your project brief and respond within 24 business hours.
             </p>
           </div>
         ) : (

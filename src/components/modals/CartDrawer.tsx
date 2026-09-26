@@ -187,7 +187,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     type="text"
                     value={studioName}
                     onChange={(e) => setStudioName(e.target.value)}
-                    placeholder="Vance & Partners Architects"
+                    placeholder="Godwin & Partners Architects"
                     className="w-full px-3 py-2 rounded-lg bg-[#111213] border border-[#2e3137] text-xs text-[#eae7e1] focus:outline-none focus:border-[#c8a265]"
                   />
                 </div>

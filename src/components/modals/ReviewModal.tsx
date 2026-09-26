@@ -159,7 +159,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                 rows={3}
                 value={quote}
                 onChange={(e) => setQuote(e.target.value)}
-                placeholder="Share how Alexander's spatial critique, architectural details, or advisory shaped your practice..."
+                placeholder="Share how Richard's spatial critique, architectural details, or advisory shaped your practice..."
                 className="w-full px-3 py-2 rounded-lg bg-[#111213] border border-[#2e3137] text-xs text-[#eae7e1] focus:outline-none focus:border-[#c8a265] resize-none"
               />
             </div>

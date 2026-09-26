@@ -44,7 +44,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           }}
         >
           {/* Top Header */}
-          <div className="flex items-center justify-between text-[#eae7e1] max-w-2xl w-full mx-auto pb-3 border-b border-[#2a2c30]">
+          <div className="flex items-center justify-between text-[#eae7e1] max-w-2xl lg:max-w-4xl w-full mx-auto pb-3 border-b border-[#2a2c30]">
             <div className="flex flex-col min-w-0 pr-4">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
@@ -69,7 +69,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
                       </>
                     )}
                   </div>
-                  <h3 className="text-lg font-semibold text-[#f5f4ef] truncate mt-0.5">{project.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#f5f4ef] truncate mt-0.5">{project.title}</h3>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -83,8 +83,8 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           </div>
 
           {/* Main Image Container with cross-fade animation */}
-          <div className="relative w-full max-w-2xl mx-auto my-auto py-4">
-            <div className="relative w-full aspect-square sm:aspect-[4/3] rounded-xl overflow-hidden bg-[#161719] border border-[#2b2d32] shadow-2xl">
+          <div className="relative w-full max-w-2xl lg:max-w-4xl mx-auto my-auto py-4">
+            <div className="relative w-full aspect-square sm:aspect-[16/10] rounded-xl overflow-hidden bg-[#161719] border border-[#2b2d32] shadow-2xl">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={project.id}
@@ -114,26 +114,26 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
                   e.stopPropagation();
                   onPrev();
                 }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#121316]/75 hover:bg-[#121316] text-[#eae7e1] border border-white/10 flex items-center justify-center backdrop-blur-sm transition-all hover:scale-105 active:scale-95 cursor-pointer z-10"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121316]/80 hover:bg-[#121316] text-[#eae7e1] border border-white/10 flex items-center justify-center backdrop-blur-sm transition-all hover:scale-105 active:scale-95 cursor-pointer z-10 shadow-lg"
                 aria-label="Previous Project"
               >
-                <span className="material-symbols-outlined text-[20px]">chevron_left</span>
+                <span className="material-symbols-outlined text-[22px]">chevron_left</span>
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onNext();
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#121316]/75 hover:bg-[#121316] text-[#eae7e1] border border-white/10 flex items-center justify-center backdrop-blur-sm transition-all hover:scale-105 active:scale-95 cursor-pointer z-10"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121316]/80 hover:bg-[#121316] text-[#eae7e1] border border-white/10 flex items-center justify-center backdrop-blur-sm transition-all hover:scale-105 active:scale-95 cursor-pointer z-10 shadow-lg"
                 aria-label="Next Project"
               >
-                <span className="material-symbols-outlined text-[20px]">chevron_right</span>
+                <span className="material-symbols-outlined text-[22px]">chevron_right</span>
               </button>
             </div>
           </div>
 
           {/* Narrative & Navigation */}
-          <div className="max-w-2xl w-full mx-auto flex flex-col gap-3 pt-2">
+          <div className="max-w-2xl lg:max-w-4xl w-full mx-auto flex flex-col gap-3 pt-2">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`desc-${project.id}`}

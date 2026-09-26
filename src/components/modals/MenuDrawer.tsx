@@ -6,6 +6,8 @@ interface MenuDrawerProps {
   onClose: () => void;
   onNavigate: (sectionId: string) => void;
   onOpenContact: () => void;
+  theme?: 'dark' | 'light';
+  onToggleTheme?: () => void;
 }
 
 export const MenuDrawer: React.FC<MenuDrawerProps> = ({
@@ -13,6 +15,8 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
   onClose,
   onNavigate,
   onOpenContact,
+  theme = 'dark',
+  onToggleTheme,
 }) => {
   if (!isOpen) return null;
 
@@ -80,6 +84,23 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                 <span className="material-symbols-outlined text-[16px] text-[#555864]">chevron_right</span>
               </button>
             ))}
+
+            {onToggleTheme && (
+              <button
+                onClick={onToggleTheme}
+                className="w-full px-3 py-2.5 mt-2 rounded-xl bg-[#202227] hover:bg-[#262931] border border-[#2d3038] text-left text-xs font-medium text-[#eae7e1] flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="material-symbols-outlined text-[18px] text-[#c8a265]">
+                    {theme === 'dark' ? 'light_mode' : 'dark_mode'}
+                  </span>
+                  <span>Appearance: {theme === 'dark' ? 'Dark Obsidian' : 'Light Limestone'}</span>
+                </div>
+                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-[#161719] text-[#c8a265] border border-[#30333d]">
+                  Switch
+                </span>
+              </button>
+            )}
           </nav>
         </div>
 
@@ -103,7 +124,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
           </button>
 
           <p className="text-[10px] text-center text-[#676b77]">
-            © {new Date().getFullYear()} Atelier Vance Architecture & Spatial Systems. All rights reserved.
+            © {new Date().getFullYear()} Richard Godwin Architecture & Spatial Systems. All rights reserved.
           </p>
         </div>
       </div>

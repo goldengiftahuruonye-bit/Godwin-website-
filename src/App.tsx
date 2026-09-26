@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   FEATURED_PROJECTS, 
   DIGITAL_PRODUCTS, 
@@ -30,8 +30,37 @@ import { MenuDrawer } from './components/modals/MenuDrawer';
 import { ProductDetailModal } from './components/modals/ProductDetailModal';
 
 export default function App() {
-  // View mode: 'mobile' mirrors the exact smartphone shell from the screenshot, 'expanded' gives wide presence
-  const [viewMode, setViewMode] = useState<'mobile' | 'expanded'>('mobile');
+  // Theme state: 'dark' (obsidian) or 'light' (limestone gallery)
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('atelier_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.remove('dark');
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+      root.classList.add('dark');
+    }
+    try {
+      localStorage.setItem('atelier_theme', theme);
+    } catch {
+      // ignore
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Pre-seed 2 items to match the "2" cart badge in user's screenshot
   const [cartItems, setCartItems] = useState<CartItem[]>([
@@ -133,120 +162,132 @@ export default function App() {
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-[#0e0f10] text-[#eae7e1] flex flex-col items-center justify-start relative antialiased selection:bg-[#c8a265] selection:text-[#121314]">
-      {/* View Mode Banner on Desktop for easy toggling */}
-      <aside aria-label="Layout view switcher" className="hidden lg:flex items-center justify-between w-full max-w-4xl px-4 py-2 text-[11px] text-[#7d818f] border-b border-[#212328]">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#c8a265]" />
-          <span>Atelier Vance — Architectural Storefront &amp; Studio Dossier</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[#595c67]">Layout View:</span>
-          <button
-            onClick={() => setViewMode('mobile')}
-            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-              viewMode === 'mobile'
-                ? 'bg-[#22242a] text-[#c8a265] font-semibold border border-[#30333b]'
-                : 'hover:text-[#eae7e1]'
-            }`}
-          >
-            Mobile Shell (Exact Prototype)
-          </button>
-          <button
-            onClick={() => setViewMode('expanded')}
-            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-              viewMode === 'expanded'
-                ? 'bg-[#22242a] text-[#c8a265] font-semibold border border-[#30333b]'
-                : 'hover:text-[#eae7e1]'
-            }`}
-          >
-            Expanded Studio Layout
-          </button>
-        </div>
-      </aside>
+    <div className="min-h-screen w-full bg-[#121314] text-[#eae7e1] flex flex-col relative antialiased selection:bg-[#c8a265] selection:text-[#121314]">
+      {/* Top Header - Fluid responsive width with desktop navigation links & actions */}
+      <Header
+        cartCount={totalCartCount}
+        onOpenCart={() => setIsCartOpen(true)}
+        onOpenMenu={() => setIsMenuOpen(true)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onNavigate={scrollToSection}
+        onOpenContact={() => {
+          setContactDefaultType('commission');
+          setIsContactModalOpen(true);
+        }}
+      />
 
-      {/* Main Container Shell */}
-      <div 
-        className={`w-full relative flex flex-col bg-[#121314] transition-all duration-300 ${
-          viewMode === 'mobile'
-            ? 'max-w-md mx-auto min-h-screen shadow-[0_0_60px_rgba(0,0,0,0.85)] border-x border-[#222429]'
-            : 'max-w-3xl mx-auto min-h-screen shadow-2xl border-x border-[#222429]'
-        }`}
-      >
-        {/* Top Header */}
-        <Header
-          cartCount={totalCartCount}
-          onOpenCart={() => setIsCartOpen(true)}
-          onOpenMenu={() => setIsMenuOpen(true)}
-          viewMode={viewMode}
-          onToggleViewMode={() => setViewMode(viewMode === 'mobile' ? 'expanded' : 'mobile')}
-        />
-
-        {/* Main Content Body */}
-        <main className="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-[#121314]">
-          {/* Section 1: Hero */}
-          <HeroSection
-            onScrollToProjects={() => scrollToSection('portfolio-grid')}
-            onOpenCommission={() => {
-              setContactDefaultType('commission');
-              setIsContactModalOpen(true);
-            }}
-          />
-
-          {/* Section 2: About Studio */}
-          <AboutStudioSection />
-
-          {/* Section 3: Featured Work Grid (3-column matching screenshot) */}
-          <FeaturedWorkGrid
-            projects={FEATURED_PROJECTS}
-            onSelectProject={(proj) => setSelectedProject(proj)}
-          />
-
-          {/* Section 4: 1:1 Advisory & Masterclass with Video Preview */}
-          <MentorshipCard
-            onOpenVideo={() => setIsVideoOpen(true)}
-            onOpenBooking={() => {
-              setContactDefaultType('advisory');
-              setIsContactModalOpen(true);
-            }}
-          />
-
-          {/* Section 5: Peer Reviews & Testimonials */}
-          <ReviewsSection
-            reviews={reviews}
-            onOpenWriteReview={() => setIsReviewModalOpen(true)}
-          />
-
-          {/* Section 6: High-Contrast Cream Travertine Digital Store */}
-          <DigitalProductsStore
-            products={DIGITAL_PRODUCTS}
-            onAddToCart={handleAddToCart}
-            onOpenProductDetail={(prod) => setSelectedProduct(prod)}
-          />
-
-          {/* Section 7: FAQ Accordion */}
-          <FaqSection />
-
-          {/* Footer Note */}
-          <footer className="px-4 py-8 text-center text-[11px] text-[#6d717e] border-t border-[#1e2024]">
-            <p className="font-serif text-[13px] text-[#8e929f] mb-1">
-              Atelier Vance — Architectural Design &amp; Spatial Systems
-            </p>
-            <p>Zurich · New York · Kyoto</p>
-            <p className="mt-2 text-[10px] text-[#555864]">
-              All architectural photography, drawings, CAD standards &copy; {new Date().getFullYear()} Atelier Vance.
-            </p>
-          </footer>
-        </main>
-
-        {/* Floating Fixed Bottom Bar */}
-        <FixedBottomBar
-          onOpenContact={() => {
+      {/* Main Content Body - Responsive padding and full fluid width */}
+      <main className="flex-1 flex flex-col relative w-full pt-16 sm:pt-20 pb-28 md:pb-16 bg-[#121314] overflow-x-hidden">
+        {/* Section 1: Hero */}
+        <HeroSection
+          onScrollToProjects={() => scrollToSection('portfolio-grid')}
+          onOpenCommission={() => {
             setContactDefaultType('commission');
             setIsContactModalOpen(true);
           }}
         />
-      </div>
+
+        {/* Section 2: About Studio */}
+        <AboutStudioSection />
+
+        {/* Section 3: Featured Work Grid (Responsive 2 / 3 / 4 columns) */}
+        <FeaturedWorkGrid
+          projects={FEATURED_PROJECTS}
+          onSelectProject={(proj) => setSelectedProject(proj)}
+        />
+
+        {/* Section 4: 1:1 Advisory & Masterclass with Video Preview */}
+        <MentorshipCard
+          onOpenVideo={() => setIsVideoOpen(true)}
+          onOpenBooking={() => {
+            setContactDefaultType('advisory');
+            setIsContactModalOpen(true);
+          }}
+        />
+
+        {/* Section 5: Peer Reviews & Testimonials */}
+        <ReviewsSection
+          reviews={reviews}
+          onOpenWriteReview={() => setIsReviewModalOpen(true)}
+        />
+
+        {/* Section 6: High-Contrast Cream Travertine Digital Store */}
+        <DigitalProductsStore
+          products={DIGITAL_PRODUCTS}
+          onAddToCart={handleAddToCart}
+          onOpenProductDetail={(prod) => setSelectedProduct(prod)}
+        />
+
+        {/* Section 7: FAQ Accordion */}
+        <FaqSection />
+
+        {/* Responsive Footer */}
+        <footer className="w-full border-t border-[#1e2024] bg-[#0f1011] mt-12 py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-center md:text-left">
+            <div className="flex flex-col gap-2 max-w-sm">
+              <div className="flex items-center justify-center md:justify-start gap-2.5">
+                <div className="w-7 h-7 rounded-full border border-[#c8a265]/40 bg-[#1c1d20] flex items-center justify-center text-[#c8a265] font-serif font-bold text-xs tracking-tighter shadow-sm">
+                  <span>RG</span>
+                </div>
+                <span className="font-serif text-base font-bold text-[#f5f4ef]">
+                  Richard Godwin
+                </span>
+              </div>
+              <p className="text-xs text-[#8e929f] leading-relaxed">
+                Architectural design atelier synthesizing geological permanence, ambient daylight, and tectonic rigor.
+              </p>
+              <p className="text-[11px] font-mono text-[#c8a265]">
+                Zurich · New York · Kyoto
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#9ea2af]">
+              <button onClick={() => scrollToSection('about-studio')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
+                Atelier Profile
+              </button>
+              <button onClick={() => scrollToSection('portfolio-grid')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
+                Built Works
+              </button>
+              <button onClick={() => scrollToSection('advisory-program')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
+                Advisory Cohorts
+              </button>
+              <button onClick={() => scrollToSection('digital-store')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
+                BIM Toolkits
+              </button>
+              <button onClick={() => scrollToSection('faq-section')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
+                FAQ
+              </button>
+              <button 
+                onClick={() => {
+                  setContactDefaultType('commission');
+                  setIsContactModalOpen(true);
+                }} 
+                className="hover:text-[#c8a265] transition-colors cursor-pointer text-[#c8a265] font-semibold"
+              >
+                Inquire for Commission
+              </button>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-[#1d1f23] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#636774] gap-3 text-center sm:text-left">
+            <p>
+              All architectural photography, drawings, CAD &amp; BIM standards &copy; {new Date().getFullYear()} Richard Godwin Architecture.
+            </p>
+            <p className="font-mono text-[#4b4e58]">
+              Tectonic Dossier v2.6.4 • Responsive Spatial Layout
+            </p>
+          </div>
+        </footer>
+      </main>
+
+      {/* Floating Action Bars (Mobile dock on phones, subtle floating pill on desktop) */}
+      <FixedBottomBar
+        onOpenContact={() => {
+          setContactDefaultType('commission');
+          setIsContactModalOpen(true);
+        }}
+      />
 
       {/* Lightbox Modal */}
       <LightboxModal
@@ -305,6 +346,8 @@ export default function App() {
           setContactDefaultType('commission');
           setIsContactModalOpen(true);
         }}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Digital Product Detail Modal */}
