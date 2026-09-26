@@ -178,7 +178,7 @@ export default function App() {
       />
 
       {/* Main Content Body - Responsive padding and full fluid width */}
-      <main className="flex-1 flex flex-col relative w-full pt-16 sm:pt-20 pb-28 md:pb-16 bg-[#121314] overflow-x-hidden">
+      <main className="flex-1 flex flex-col relative w-full pt-20 sm:pt-24 md:pt-28 pb-28 md:pb-16 bg-[#121314] overflow-x-hidden">
         {/* Section 1: Hero */}
         <HeroSection
           onScrollToProjects={() => scrollToSection('portfolio-grid')}
