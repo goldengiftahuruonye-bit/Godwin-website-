@@ -13,9 +13,11 @@ import archDetailsCover from '../assets/images/arch_details_cover_1790155067351.
 import parametricFacadeCover from '../assets/images/parametric_facade_cover_1790155077625.jpg';
 import studioOsCover from '../assets/images/studio_os_cover_1790155091232.jpg';
 import tectonicBookCover from '../assets/images/tectonic_book_cover_1790155101452.jpg';
+import rgLogoImg from '../assets/images/architect_rg_logo_1790397494050.jpg';
 
 export const ARCHITECT_INFO = {
   name: 'Richard Godwin',
+  logo: rgLogoImg,
   email: 'goldengiftahuruonye@gmail.com',
   inquiryEmail: 'goldengiftahuruonye@gmail.com',
   titles: 'Principal Architect & Spatial Theorist',

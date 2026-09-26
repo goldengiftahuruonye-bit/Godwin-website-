@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ARCHITECT_INFO, FEATURED_PROJECTS, DIGITAL_PRODUCTS } from '../../data/architecturalData';
 import { Project, DigitalProduct } from '../../types/architecture';
+import { RgLogo } from '../RgLogo';
 
 interface MenuDrawerProps {
   isOpen: boolean;
@@ -104,13 +105,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between border-b border-[#26282e] pb-4 mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-[#c8a265]/40 bg-[#202227] shrink-0">
-                <img
-                  src={ARCHITECT_INFO.portrait}
-                  alt={ARCHITECT_INFO.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <RgLogo size="md" glow />
               <div className="flex flex-col">
                 <span className="font-semibold text-sm text-[#f5f4ef] leading-tight">
                   {ARCHITECT_INFO.name}

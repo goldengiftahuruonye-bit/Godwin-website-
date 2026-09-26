@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ARCHITECT_INFO } from '../../data/architecturalData';
+import { RgLogo } from '../RgLogo';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -150,9 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         {/* Top Header */}
         <div className="flex items-center justify-between border-b border-[#26282e] pb-3.5 mb-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#1f2125] border border-[#c8a265]/40 flex items-center justify-center text-[#c8a265] text-xs font-serif font-bold">
-              RG
-            </div>
+            <RgLogo size="sm" glow />
             <div>
               <h3 className="font-semibold text-base text-[#f5f4ef] leading-tight">
                 Direct Atelier Inquiry &amp; Payment Desk

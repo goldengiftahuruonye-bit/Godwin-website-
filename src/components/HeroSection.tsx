@@ -1,5 +1,6 @@
 import React from 'react';
 import { ARCHITECT_INFO } from '../data/architecturalData';
+import { RgLogo } from './RgLogo';
 
 interface HeroSectionProps {
   onScrollToProjects: () => void;
@@ -12,6 +13,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-24 flex flex-col items-center text-center relative">
+      {/* Brand Monogram Crest Emblem */}
+      <div className="mb-3 sm:mb-5">
+        <RgLogo size="lg" glow className="hover:scale-105 transition-transform" />
+      </div>
+
       {/* 1. Status Pill with pulsing bronze dot */}
       <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:py-1.5 rounded-full bg-[#1e2023] border border-[#2d3036] text-[#c8a265] text-[11px] sm:text-[12px] font-semibold tracking-wider uppercase mb-5 sm:mb-8">
         <span className="w-2 h-2 rounded-full bg-[#c8a265] animate-pulse" />

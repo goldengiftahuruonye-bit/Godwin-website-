@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ARCHITECT_INFO } from '../data/architecturalData';
+import { RgLogo } from './RgLogo';
 
 interface HeaderProps {
   cartCount: number;
@@ -96,9 +97,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-2.5 sm:gap-3 shrink-0 cursor-pointer group"
           title="Richard Godwin Atelier — Back to Top"
         >
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#c8a265]/50 bg-[#1c1d21] dark:bg-[#1c1d21] light:bg-[#efebe2] flex items-center justify-center text-[#c8a265] font-serif font-bold text-xs sm:text-sm tracking-tighter shadow-sm group-hover:scale-105 transition-transform">
-            <span>RG</span>
-          </div>
+          <RgLogo size="md" glow className="group-hover:scale-105" />
           <div className="flex flex-col">
             <span className="font-serif tracking-tight text-sm sm:text-base font-bold leading-tight group-hover:text-[#c8a265] transition-colors">
               {ARCHITECT_INFO.name}

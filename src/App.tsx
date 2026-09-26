@@ -28,6 +28,7 @@ import { ReviewModal } from './components/modals/ReviewModal';
 import { ContactModal } from './components/modals/ContactModal';
 import { MenuDrawer } from './components/modals/MenuDrawer';
 import { ProductDetailModal } from './components/modals/ProductDetailModal';
+import { RgLogo } from './components/RgLogo';
 
 export default function App() {
   // Theme state: 'dark' (obsidian) or 'light' (limestone gallery)
@@ -231,9 +232,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-center md:text-left">
             <div className="flex flex-col gap-2 max-w-sm">
               <div className="flex items-center justify-center md:justify-start gap-2.5">
-                <div className="w-7 h-7 rounded-full border border-[#c8a265]/40 bg-[#1c1d20] flex items-center justify-center text-[#c8a265] font-serif font-bold text-xs tracking-tighter shadow-sm">
-                  <span>RG</span>
-                </div>
+                <RgLogo size="sm" glow />
                 <span className="font-serif text-base font-bold text-[#f5f4ef]">
                   Richard Godwin
                 </span>

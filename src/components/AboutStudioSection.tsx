@@ -1,5 +1,6 @@
 import React from 'react';
 import { ARCHITECT_INFO } from '../data/architecturalData';
+import { RgLogo } from './RgLogo';
 
 export const AboutStudioSection: React.FC = () => {
   return (
@@ -9,9 +10,12 @@ export const AboutStudioSection: React.FC = () => {
         {/* Left Column: Narrative Biography & Spatial Manifesto */}
         <div className="lg:col-span-5 flex flex-col gap-5">
           <div className="flex items-center justify-between">
-            <h2 className="text-[24px] sm:text-[28px] font-bold text-[#f5f4ef] font-serif">
-              About the Atelier
-            </h2>
+            <div className="flex items-center gap-3">
+              <RgLogo size="md" glow />
+              <h2 className="text-[24px] sm:text-[28px] font-bold text-[#f5f4ef] font-serif">
+                About the Atelier
+              </h2>
+            </div>
             <span className="px-3 py-1 rounded-full bg-[#1f2125] border border-[#2d3036] text-[#c8a265] text-[11px] uppercase tracking-wider font-semibold">
               Studio Profile
             </span>
