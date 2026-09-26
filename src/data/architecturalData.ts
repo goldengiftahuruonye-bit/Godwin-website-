@@ -25,14 +25,6 @@ export const ARCHITECT_INFO = {
   videoThumbnail: studioCritiqueVideo,
   bioSummary: `Over the past 15+ years, Alexander Vance has directed spatial masterplans, monolithic private residences, and cultural pavilions across North America, the Swiss Alps, and Scandinavia. His practice operates at the intersection of geological permanence, daylight choreography, and tectonic precision.`,
   bioExtended: `Through rigorous drawing analysis, physical scale casting, and direct spatial masterclasses, he has advised over 300+ practicing architects and computational design leads worldwide, teaching the art of quiet proportion, detailing discipline, and resilient architectural assemblies.`,
-  podcast: {
-    title: 'Spatial Discourse Weekly',
-    episode: 'Ep. 52: Tectonic Silence & Monolithic Concrete',
-    duration: '48 min',
-    currentTime: '08:14',
-    totalTime: '48:00',
-    description: 'Deep dive into thermal mass casting, non-standard shuttering patterns, and orchestrating daylight aperture in subterranean living spaces.'
-  },
   mentorship: {
     cohort: 'Cohort 04',
     title: '1:1 Architectural Advisory & Design Critique',

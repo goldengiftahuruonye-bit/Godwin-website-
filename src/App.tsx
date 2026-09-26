@@ -187,7 +187,10 @@ export default function App() {
           {/* Section 1: Hero */}
           <HeroSection
             onScrollToProjects={() => scrollToSection('portfolio-grid')}
-            onScrollToPodcast={() => scrollToSection('podcast-highlight')}
+            onOpenCommission={() => {
+              setContactDefaultType('commission');
+              setIsContactModalOpen(true);
+            }}
           />
 
           {/* Section 2: About Studio */}

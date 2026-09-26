@@ -3,12 +3,12 @@ import { ARCHITECT_INFO } from '../data/architecturalData';
 
 interface HeroSectionProps {
   onScrollToProjects: () => void;
-  onScrollToPodcast: () => void;
+  onOpenCommission: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onScrollToProjects,
-  onScrollToPodcast,
+  onOpenCommission,
 }) => {
   return (
     <section className="px-4 py-8 flex flex-col items-center text-center relative">
@@ -30,9 +30,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* 4. Stacked Action Pills */}
       <div className="w-full flex flex-col gap-3">
-        {/* Button 1: Audio Broadcast Pill */}
+        {/* Button 1: Studio Commission & Advisory Inquiry */}
         <button
-          onClick={onScrollToPodcast}
+          onClick={onOpenCommission}
           className="group flex items-center justify-between p-2.5 pl-3 rounded-full bg-[#1b1c1f] hover:bg-[#24262b] border border-[#292c32] hover:border-[#383c45] transition-all shadow-md text-left cursor-pointer w-full"
         >
           <div className="flex items-center gap-3 min-w-0">
@@ -46,20 +46,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex flex-col text-left min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="text-[15px] font-semibold text-[#f5f4ef] leading-tight">
-                  Listen to Spatial Discourse
-                </span>
-                <span className="material-symbols-outlined text-[#c8a265] text-[16px]">
-                  graphic_eq
+                  Inquire for Architectural Commission
                 </span>
               </div>
               <span className="text-[12px] text-[#8e929f] truncate">
-                {ARCHITECT_INFO.podcast.episode}
+                Direct Atelier Engagement • Zurich &amp; New York
               </span>
             </div>
           </div>
 
           <div className="w-8 h-8 rounded-full bg-[#27292f] group-hover:bg-[#c8a265] text-[#eae7e1] group-hover:text-[#121314] flex items-center justify-center shrink-0 group-hover:scale-105 transition-all mr-1 shadow-sm">
-            <span className="material-symbols-outlined text-[18px]">play_arrow</span>
+            <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
           </div>
         </button>
 
@@ -79,3 +76,4 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     </section>
   );
 };
+

@@ -69,3 +69,30 @@ Open your browser and navigate to:
 - `src/types/architecture.ts`: TypeScript data interfaces and types.
 - `src/index.css`: Tailwind CSS configuration and typography.
 - `vite.config.ts`: Vite build configuration.
+- `vercel.json`: Pre-configured build command, output directory (`dist`), and SPA routing for Vercel.
+- `.npmrc`: Configures `legacy-peer-deps=true` to guarantee zero dependency resolution conflicts in Vercel CI.
+
+---
+
+## Deploying to Vercel
+
+### Option 1: Git Repository (Recommended)
+1. Push this project to GitHub, GitLab, or Bitbucket.
+2. In your [Vercel Dashboard](https://vercel.com/new), click **"Add New..."** > **"Project"**.
+3. Import your repository.
+4. Vercel will automatically detect the settings from `vercel.json`:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Click **Deploy**.
+
+### Option 2: Deploy with Vercel CLI
+Run the following in your terminal:
+```bash
+npx vercel
+```
+Follow the interactive prompts to deploy. For production:
+```bash
+npx vercel --prod
+```
+
