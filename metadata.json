@@ -1,0 +1,7 @@
+{
+  "name": "Atelier Vance — Architectural Design & Spatial Systems",
+  "description": "Bespoke architectural design studio, spatial systems, 1:1 advisory cohorts, and architectural digital blueprint resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

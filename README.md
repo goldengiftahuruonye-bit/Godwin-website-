@@ -1,11 +1,71 @@
-<div align="center">
+# Atelier Vance — Architectural Design & Spatial Systems
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+This is a modern, responsive React + TypeScript + Tailwind CSS web application built with Vite.
 
-  <h1>Built with AI Studio</h2>
+## How to Run in VS Code
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+You can run this project locally on your machine with VS Code in just 3 quick steps:
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+### Prerequisites
+Make sure you have **Node.js** installed on your computer (v18, v20, or newer recommended).
+- Check if you have it installed:
+  ```bash
+  node -v
+  npm -v
+  ```
+- If you don't have Node.js, download and install it from [nodejs.org](https://nodejs.org/).
 
-</div>
+---
+
+### Step 1: Open the Project in VS Code
+1. Download or extract this project folder.
+2. Open **Visual Studio Code**.
+3. Go to **File** > **Open Folder...** (or press `Cmd + O` on macOS / `Ctrl + O` on Windows) and select the project directory.
+
+---
+
+### Step 2: Open the Integrated Terminal & Install Dependencies
+1. Open the terminal inside VS Code by pressing ``Ctrl + ` `` (or ``Cmd + ` `` on macOS), or go to **Terminal** > **New Terminal**.
+2. Run the following command to install the required packages:
+   ```bash
+   npm install
+   ```
+
+---
+
+### Step 3: Start the Development Server
+Run:
+```bash
+npm run dev
+```
+
+Once the terminal outputs:
+```text
+  VITE v8.3.0  ready in 200 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
+```
+
+Open your browser and navigate to:
+**[http://localhost:3000](http://localhost:3000)** (or `Ctrl+Click` / `Cmd+Click` the link in the VS Code terminal).
+
+---
+
+### Available Scripts
+
+- **`npm run dev`**: Starts the local development server with hot reload at `http://localhost:3000`.
+- **`npm run build`**: Compiles TypeScript and creates an optimized production bundle in `/dist`.
+- **`npm run preview`**: Previews the built production app locally.
+- **`npm run lint`**: Checks for TypeScript type errors (`tsc --noEmit`).
+
+---
+
+### Project Structure
+
+- `src/App.tsx`: Main page layout, state management, modal controllers, and view toggling.
+- `src/components/`: Modular components (Hero, Featured Work, Mentorship, Digital Store, Reviews, FAQ, Lightbox, Modals, Header, Bottom Bar).
+- `src/data/architecturalData.ts`: Architectural projects, digital blueprint assets, reviews, and FAQ content.
+- `src/types/architecture.ts`: TypeScript data interfaces and types.
+- `src/index.css`: Tailwind CSS configuration and typography.
+- `vite.config.ts`: Vite build configuration.

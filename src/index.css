@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #121314;
+    color: #eae7e1;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  
+  body {
+    overscroll-behavior: none;
+  }
+  
+  .font-serif-quote {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+  }
+  
+  .font-display-arch {
+    font-family: 'Cinzel', serif;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 16px);
+  }
+}
+
+/* Blueprint drafting grid pattern for subtle architectural texture */
+.bg-architect-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(200, 162, 101, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 162, 101, 0.04) 1px, transparent 1px);
+}
+
+.bg-architect-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(200, 162, 101, 0.12) 1px, transparent 1px);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #141517;
+}
+::-webkit-scrollbar-thumb {
+  background: #2f3136;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8a265;
+}
+
