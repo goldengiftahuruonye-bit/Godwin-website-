@@ -16,6 +16,8 @@ import tectonicBookCover from '../assets/images/tectonic_book_cover_179015510145
 
 export const ARCHITECT_INFO = {
   name: 'Richard Godwin',
+  email: 'goldengiftahuruonye@gmail.com',
+  inquiryEmail: 'goldengiftahuruonye@gmail.com',
   titles: 'Principal Architect & Spatial Theorist',
   credentials: 'AIA, RIBA, SIA',
   studio: 'Atelier Godwin',
@@ -268,6 +270,12 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: 'What CAD/BIM software versions are supported?',
     answer: 'Our detail libraries are provided in Autodesk Revit (versions 2023 through 2026), native AutoCAD DWG (2018 format for universal backward compatibility), DXF, and vector PDF. The Parametric Facade kit runs on McNeel Rhinoceros 7 & 8 with native Grasshopper.',
     category: 'Products'
+  },
+  {
+    id: 'faq-payment-plans',
+    question: 'What payment plans are offered, and how do I receive direct email proposals?',
+    answer: 'We offer flexible payment structures for both architectural commissions and the 1:1 Advisory Cohort: 2-part milestone plans (50% upfront, 50% on completion), 3-part tranche plans, and 6-month equal installment arrangements. When you submit an inquiry form or payment plan request, a structured proposal is generated and dispatched immediately to goldengiftahuruonye@gmail.com, with a 24-hour turnaround for formal fee agreements and electronic invoicing.',
+    category: 'Advisory'
   },
   {
     id: 'faq-5',

@@ -204,6 +204,10 @@ export default function App() {
             setContactDefaultType('advisory');
             setIsContactModalOpen(true);
           }}
+          onOpenPaymentPlan={() => {
+            setContactDefaultType('payment-plan');
+            setIsContactModalOpen(true);
+          }}
         />
 
         {/* Section 5: Peer Reviews & Testimonials */}
@@ -240,6 +244,16 @@ export default function App() {
               <p className="text-[11px] font-mono text-[#c8a265]">
                 Zurich · New York · Kyoto
               </p>
+              <div className="pt-2 flex items-center gap-1.5 text-xs text-[#a0a4b2]">
+                <span className="material-symbols-outlined text-[16px] text-[#c8a265]">mail</span>
+                <span>Direct Studio Email:</span>
+                <a
+                  href="mailto:goldengiftahuruonye@gmail.com?subject=Direct%20Inquiry%20%E2%80%94%20Richard%20Godwin%20Atelier"
+                  className="text-[#c8a265] hover:underline font-mono text-xs"
+                >
+                  goldengiftahuruonye@gmail.com
+                </a>
+              </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#9ea2af]">
@@ -251,6 +265,15 @@ export default function App() {
               </button>
               <button onClick={() => scrollToSection('advisory-program')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
                 Advisory Cohorts
+              </button>
+              <button 
+                onClick={() => {
+                  setContactDefaultType('payment-plan');
+                  setIsContactModalOpen(true);
+                }} 
+                className="hover:text-[#c8a265] transition-colors cursor-pointer text-[#d8dadf]"
+              >
+                Payment Plans
               </button>
               <button onClick={() => scrollToSection('digital-store')} className="hover:text-[#c8a265] transition-colors cursor-pointer">
                 BIM Toolkits
@@ -348,6 +371,14 @@ export default function App() {
         }}
         theme={theme}
         onToggleTheme={toggleTheme}
+        onSelectProject={(proj) => {
+          setSelectedProject(proj);
+          scrollToSection('portfolio-grid');
+        }}
+        onSelectProduct={(prod) => {
+          setSelectedProduct(prod);
+          scrollToSection('digital-store');
+        }}
       />
 
       {/* Digital Product Detail Modal */}

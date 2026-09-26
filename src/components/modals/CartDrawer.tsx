@@ -209,13 +209,28 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             </div>
             <button
               onClick={handleCheckoutSubmit}
-              className="w-full py-3.5 rounded-full bg-[#c8a265] hover:bg-[#dfb776] text-[#141413] font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+              className="w-full py-3.5 rounded-full bg-[#c8a265] hover:bg-[#dfb776] text-[#141413] font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
             >
               <span className="material-symbols-outlined text-[18px]">lock</span>
               Complete Instant Checkout (${subtotal.toFixed(2)})
             </button>
+
+            <a
+              href={`mailto:goldengiftahuruonye@gmail.com?subject=${encodeURIComponent(
+                'Studio Invoice & Payment Plan Inquiry — Atelier CAD Suite'
+              )}&body=${encodeURIComponent(
+                `Hello Atelier Godwin (goldengiftahuruonye@gmail.com),\n\nI would like to request a formal studio tax invoice or installment payment plan for the following CAD/BIM tools in my cart:\n\n${items
+                  .map((it) => `- ${it.product.title} (Qty: ${it.quantity}) — $${it.product.price * it.quantity}`)
+                  .join('\n')}\n\nTotal Value: $${subtotal.toFixed(2)}\n\nPlease advise on billing and wire details.`
+              )}`}
+              className="w-full py-2.5 rounded-full bg-[#1e2025] hover:bg-[#282a30] text-[#c8a265] text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[#323640] cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[15px]">receipt_long</span>
+              <span>Request Studio Invoice &amp; Payment Plan via Email</span>
+            </a>
+
             <p className="text-[10px] text-center text-[#6e727e]">
-              Includes commercial studio license, vector source files & lifetime code updates.
+              Direct studio desk: goldengiftahuruonye@gmail.com · Includes commercial license
             </p>
           </div>
         )}

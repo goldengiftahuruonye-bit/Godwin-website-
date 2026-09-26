@@ -4,11 +4,13 @@ import { ARCHITECT_INFO } from '../data/architecturalData';
 interface MentorshipCardProps {
   onOpenVideo: () => void;
   onOpenBooking: () => void;
+  onOpenPaymentPlan?: () => void;
 }
 
 export const MentorshipCard: React.FC<MentorshipCardProps> = ({
   onOpenVideo,
   onOpenBooking,
+  onOpenPaymentPlan,
 }) => {
   const { mentorship } = ARCHITECT_INFO;
 
@@ -66,14 +68,30 @@ export const MentorshipCard: React.FC<MentorshipCardProps> = ({
               </div>
             </div>
 
-            {/* Apply Button */}
-            <button
-              onClick={onOpenBooking}
-              className="w-full mt-2 py-3.5 px-6 rounded-full bg-[#202227] hover:bg-[#c8a265] text-[#eae7e1] hover:text-[#121314] border border-[#2e3137] hover:border-[#c8a265] text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
-            >
-              <span className="material-symbols-outlined text-[17px]">edit_calendar</span>
-              <span>Apply for Cohort 04 Review</span>
-            </button>
+            {/* Action Buttons: Apply & Payment Plan */}
+            <div className="flex flex-col sm:flex-row gap-2.5 mt-2">
+              <button
+                onClick={onOpenBooking}
+                className="flex-1 py-3 px-5 rounded-full bg-[#c8a265] hover:bg-[#d8b375] text-[#121314] text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-95"
+              >
+                <span className="material-symbols-outlined text-[17px]">edit_calendar</span>
+                <span>Apply for Cohort 04</span>
+              </button>
+
+              <button
+                onClick={onOpenPaymentPlan || onOpenBooking}
+                className="py-3 px-4 rounded-full bg-[#202227] hover:bg-[#282a31] text-[#c8a265] hover:text-[#f5f4ef] border border-[#343842] text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                title="Inquire about 2-part milestone or 6-month monthly payment plans"
+              >
+                <span className="material-symbols-outlined text-[16px]">credit_card</span>
+                <span>Payment Plan Options</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2 text-[11px] text-[#7d818f] font-mono pt-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8a265]" />
+              <span>Inquiries &amp; financing dispatched directly to: goldengiftahuruonye@gmail.com</span>
+            </div>
           </div>
 
           {/* Right Column: Custom Video Player Mockup */}
