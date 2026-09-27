@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PeerReview } from '../../types/architecture';
 
 interface ReviewModalProps {
@@ -19,6 +19,14 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   const [projectOrCohort, setProjectOrCohort] = useState('Advisory Cohort Alumni');
   const [quote, setQuote] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

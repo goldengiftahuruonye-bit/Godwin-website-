@@ -56,7 +56,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
       {/* Desktop & Tablet Grid: Show all reviews side-by-side (hidden on mobile, visible on sm/md/lg/xl) */}
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-        {reviews.slice(0, 3).map((review) => (
+        {reviews.map((review) => (
           <div
             key={review.id}
             className="p-5 sm:p-6 rounded-2xl bg-[#18191c] border border-[#27292f] hover:border-[#383b45] transition-all flex flex-col justify-between shadow-sm"

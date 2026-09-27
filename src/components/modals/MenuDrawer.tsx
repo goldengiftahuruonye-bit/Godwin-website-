@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ARCHITECT_INFO, FEATURED_PROJECTS, DIGITAL_PRODUCTS } from '../../data/architecturalData';
 import { Project, DigitalProduct } from '../../types/architecture';
 import { RgLogo } from '../RgLogo';
@@ -26,6 +26,14 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFilter, setSearchFilter] = useState<'all' | 'works' | 'store'>('all');
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   // Filter projects based on title, subtitle, category, location, or materials
   const filteredProjects = useMemo(() => {

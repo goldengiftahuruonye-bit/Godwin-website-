@@ -46,6 +46,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <img
                 src={ARCHITECT_INFO.portrait}
                 alt={ARCHITECT_INFO.name}
+                width={44}
+                height={44}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

@@ -31,6 +31,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   }, [defaultType, isOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const targetEmail = ARCHITECT_INFO.inquiryEmail || 'goldengiftahuruonye@gmail.com';
@@ -113,8 +121,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     const brief = constructEmailBody();
     setSubmittedBrief(brief);
 
-    // Automatically trigger native mail client dispatch
-    window.location.href = mailtoUrl;
+    // Try native mail client dispatch, gracefully ignoring sandbox blocks
+    try {
+      window.location.href = mailtoUrl;
+    } catch {
+      // Ignored: sandbox environments may restrict window.location
+    }
   };
 
   const handleCopyBrief = async () => {

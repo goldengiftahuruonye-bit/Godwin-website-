@@ -88,6 +88,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     const onPause = () => setIsPlaying(false);
     const onEnded = () => setIsPlaying(false);
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     video.addEventListener('timeupdate', onTimeUpdate);
     video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('play', onPlay);
@@ -95,13 +100,14 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     video.addEventListener('ended', onEnded);
 
     return () => {
+      window.removeEventListener('keydown', handleKeyDown);
       video.removeEventListener('timeupdate', onTimeUpdate);
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
       video.removeEventListener('ended', onEnded);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/#about-studio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/#portfolio-grid</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/#advisory-program</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/#digital-store</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-3luc2a2eztznjlnqhkyy6y-893101324550.europe-west2.run.app/#faq-section</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

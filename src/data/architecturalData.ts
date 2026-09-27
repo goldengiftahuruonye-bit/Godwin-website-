@@ -12,10 +12,10 @@ import obsidianDiningSalon from '../assets/images/obsidian_dining_fluted_salon_1
 import obsidianSanctuarySuite from '../assets/images/obsidian_sanctuary_bedroom_1790529218498.jpg';
 import obsidianPenthouseAtrium from '../assets/images/obsidian_penthouse_atrium_1790529229025.jpg';
 
-import archDetailsCover from '../assets/images/arch_details_cover_1790155067351.jpg';
-import parametricFacadeCover from '../assets/images/parametric_facade_cover_1790155077625.jpg';
-import studioOsCover from '../assets/images/studio_os_cover_1790155091232.jpg';
-import tectonicBookCover from '../assets/images/tectonic_book_cover_1790155101452.jpg';
+import geometricDarkInteriorCover from '../assets/images/toolkit_geometric_dark_interior_1790529764672.jpg';
+import organicPebbleLoungeCover from '../assets/images/toolkit_organic_pebble_lounge_1790529776003.jpg';
+import timberPavilionFireplaceCover from '../assets/images/toolkit_timber_pavilion_fireplace_1790529785796.jpg';
+import mezzanineSlatVillaCover from '../assets/images/toolkit_mezzanine_slat_villa_1790529796141.jpg';
 import rgLogoImg from '../assets/images/architect_rg_logo_1790397494050.jpg';
 
 export const ARCHITECT_INFO = {
@@ -172,13 +172,13 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
   {
     id: 'revit-detail-library',
     title: 'Architectural Detail Standard Library 2026',
-    shortDesc: '180+ production-grade Revit families & parametric CAD assemblies.',
-    fullDesc: 'The definitive architectural detailing system trusted by over 1,400+ studios globally. Includes waterproofing membranes, curtain wall interfaces, thermal break parapets, flush floor-to-ceiling transitions, and AIA-compliant layer standards.',
+    shortDesc: '180+ production BIM assemblies, recessed linear lighting & wall profiles.',
+    fullDesc: 'The definitive architectural detailing system trusted by over 1,400+ studios globally. Includes waterproofing membranes, recessed geometric linear lighting channels, acoustic slatted wall interfaces, flush floor-to-ceiling transitions, and AIA-compliant layer standards.',
     price: 149.00,
     originalPrice: 199.00,
     badge: 'Bestseller',
     format: ['RVT (Revit 2023-2026)', 'DWG', 'DXF', 'Vector PDF'],
-    image: archDetailsCover,
+    image: geometricDarkInteriorCover,
     fileSize: '1.42 GB .ZIP',
     modulesOrPages: '180+ Parametric Assemblies',
     whatsIncluded: [
@@ -191,58 +191,58 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
   },
   {
     id: 'parametric-facade-toolkit',
-    title: 'Parametric Facade & Canopy Toolkit',
-    shortDesc: '400+ computational Rhino & Grasshopper scripts for kinetic louvers.',
-    fullDesc: 'Engineered for computational architects and facade engineers. Generates undulating solar louvers, diagrid timber space frames, perforated panels, and panelization schedules with clean, annotated node workflows.',
+    title: 'Parametric Interior & Curved Joinery Toolkit',
+    shortDesc: '400+ computational Grasshopper scripts, organic curved seating & media niches.',
+    fullDesc: 'Engineered for computational architects and interior designers. Generates organic pebble-curved modular seating, integrated millwork media walls, illuminated display niches, and CNC unroll fabrication schedules with clean, annotated node workflows.',
     price: 89.00,
     originalPrice: 120.00,
     badge: 'New Release',
     format: ['Grasshopper (.GH)', 'Rhino 7/8 (.3DM)', 'IFC Export Script'],
-    image: parametricFacadeCover,
+    image: organicPebbleLoungeCover,
     fileSize: '840 MB .ZIP',
     modulesOrPages: '400+ Algorithmic Nodes',
     whatsIncluded: [
-      '24 Parametric Facade Definitions (.GH) with labeled sliders',
-      'Panel Unrolling and CNC Fabrication Prep toolscripts',
-      'Solar Radiation Analysis Integration (Ladybug-ready nodes)',
-      'Step-by-step 4K video walkthrough on knot curvature optimization'
+      '24 Parametric Definition Files (.GH) with labeled sliders',
+      'Pebble Seating & Curved Millwork CNC Fabrication Prep toolscripts',
+      'Architectural Lighting & Display Niche Integration nodes',
+      'Step-by-step 4K video walkthrough on joinery curvature optimization'
     ]
   },
   {
     id: 'studio-practice-os',
-    title: 'Architectural Studio Practice OS',
-    shortDesc: 'Contracts, AIA-aligned fee calculators, and project pipeline.',
-    fullDesc: 'The complete operational operating system designed specifically for solo architects, partners, and emerging boutique design studios. Stop leaving fee margins on the table.',
+    title: 'Double-Height Timber Pavilion Blueprint Set',
+    shortDesc: 'Structural heavy timber joinery, curtain walls & monumental fireplace details.',
+    fullDesc: 'Complete architectural construction package for monumental double-height spaces. Features exposed ceiling beam tie-ins with indirect cove lighting, structural steel open-stair framing, 2-storey glass curtain wall interfaces, and monolithic fireplace chimney detailing.',
     price: 49.00,
     originalPrice: 75.00,
     badge: 'Essential',
-    format: ['Notion Workspace', 'Google Sheets', 'Word / PDF Templates'],
-    image: studioOsCover,
-    fileSize: '120 MB Package',
-    modulesOrPages: '18 Ready-to-Use Templates',
+    format: ['Revit / BIM', 'DWG Blueprints', 'Vector PDF Set'],
+    image: timberPavilionFireplaceCover,
+    fileSize: '620 MB Package',
+    modulesOrPages: '36 High-Res Sheets',
     whatsIncluded: [
-      'Client Onboarding & Architectural Brief Questionnaire',
-      'Phase-based Fee Estimator (Schematic, DD, CD, CA breakdown)',
-      'AIA / RIBA Aligned Subconsultant & Client Agreement Drafts',
-      'Site Visit Inspection Report & Punch List Mobile Tracker'
+      'Exposed Heavy Timber Beam & Uplight Tectonic Joint Drawings',
+      'Double-Height Glass Curtain Wall Thermal & Structural Sections',
+      'Floating Open-Tread Stair Fabrication & Handrail Details',
+      'Monolithic Fireplace Hearth Construction Specifications'
     ]
   },
   {
     id: 'tectonic-handbook',
-    title: 'Tectonic & Material Specification Book',
-    shortDesc: '140-page interactive PDF & handbook on concrete, stone & timber.',
-    fullDesc: 'An uncompromising technical compendium detailing the physics, tactile tolerances, and chemical sealing of architectural board-formed concrete, natural stone facades, and timber joints.',
+    title: 'Tectonic Fluted Timber & Mezzanine Specification',
+    shortDesc: '140-page architectural handbook for fluted slats, cove LEDs & glass rails.',
+    fullDesc: 'An uncompromising technical compendium detailing the physics, tactile tolerances, and millwork integration of vertical acoustic wood slats, concealed LED backlighting channels, marble media surfaces, and cantilevered mezzanine balustrades.',
     price: 29.00,
     originalPrice: 45.00,
     badge: 'Print & Digital',
     format: ['Interactive PDF', 'ePub', 'Specification Word Docs'],
-    image: tectonicBookCover,
+    image: mezzanineSlatVillaCover,
     fileSize: '310 MB High-Res PDF',
     modulesOrPages: '140 Pages (180mm x 240mm)',
     whatsIncluded: [
-      'Concrete Mix & Board-Form Surface Release Specifications',
-      'Stone Quarry Jointing & Sub-Frame Anchor Details',
-      'Acoustic Ceiling & Wall Perforation Calculations',
+      'Vertical Wood Slat Millwork & Acoustic Backer Specifications',
+      'Concealed Amber LED Channel Heat-Sink & Luminaire Details',
+      'Structural Glass Balustrade Mezzanine Shoe Anchoring Guide',
       'Direct contact directory for vetted European craft fabricators'
     ]
   }

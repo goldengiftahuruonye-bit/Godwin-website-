@@ -12,7 +12,13 @@ export const FeaturedWorkGrid: React.FC<FeaturedWorkGridProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const categories = ['All', 'Residential', 'Cultural', 'Pavilion', 'Theoretical'];
+  const categories = React.useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach((p) => {
+      if (p.category) set.add(p.category);
+    });
+    return ['All', ...Array.from(set)];
+  }, [projects]);
 
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
@@ -70,8 +76,11 @@ export const FeaturedWorkGrid: React.FC<FeaturedWorkGridProps> = ({
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              width={600}
+              height={450}
               loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
 

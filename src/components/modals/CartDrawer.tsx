@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartItem } from '../../types/architecture';
 
 interface CartDrawerProps {
@@ -21,23 +21,89 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const [checkoutStep, setCheckoutStep] = useState<'cart' | 'checking_out' | 'success'>('cart');
   const [email, setEmail] = useState('');
   const [studioName, setStudioName] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [downloadedItems, setDownloadedItems] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 
-  const handleCheckoutSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+  const handleCheckoutSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!email || !email.includes('@')) {
+      setEmailError(true);
+      return;
+    }
+    setEmailError(false);
     setCheckoutStep('checking_out');
     setTimeout(() => {
       setCheckoutStep('success');
     }, 1200);
   };
 
+  const handleDownloadItem = (productTitle: string, fileSize: string, productId: string) => {
+    const packageManifest = `========================================================================
+ATELIER RICHARD GODWIN & SPATIAL SYSTEMS
+COMMERCIAL BIM & CAD TOOLKIT DISTRIBUTION
+========================================================================
+
+Package: ${productTitle}
+Archive Package Size: ${fileSize}
+License Key: ATELIER-GODWIN-${Math.random().toString(36).substring(2, 10).toUpperCase()}-2026
+Licensee: ${email || 'Verified Purchaser'}
+Studio Entity: ${studioName || 'Single-Practice Commercial License'}
+Issued At: ${new Date().toUTCString()}
+
+INCLUDED ARCHITECTURAL ARTIFACTS:
+------------------------------------------------------------------------
+1. /BIM_Assemblies/
+   - Autodesk Revit 2026 (.RVT parametric families)
+   - IFC 4.3 OpenBIM Schema (.IFC standardized data)
+2. /Parametric_Computational_Scripts/
+   - Rhino 8 Grasshopper Definitions (.GH / .GHX)
+3. /Tectonic_Detail_Drawings/
+   - Construction Documentation (.DWG / .DXF / Vector .PDF)
+4. /Materiality_Shaders/
+   - PBR 8K Textures & Shaders (V-Ray 6, Enscape 4, Twinmotion)
+5. /Documentation/
+   - Architectural Technical Specification Handbook (140+ Pages)
+
+TECHNICAL ASSISTANCE & CUSTOM WORK:
+Direct Atelier Desk: goldengiftahuruonye@gmail.com
+Studio Offices: Zurich Berg, Switzerland & SoHo, New York
+========================================================================`;
+
+    const blob = new Blob([packageManifest], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${productTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}_package.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setDownloadedItems((prev) => ({ ...prev, [productId]: true }));
+  };
+
+  const handleDownloadAll = () => {
+    items.forEach((item) => {
+      handleDownloadItem(item.product.title, item.product.fileSize, item.product.id);
+    });
+  };
+
   const handleReset = () => {
     onClearCart();
     setCheckoutStep('cart');
+    setDownloadedItems({});
     onClose();
   };
 
@@ -81,22 +147,51 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 Your instant download links and VAT license receipt have been dispatched to <span className="text-[#eae7e1] font-mono">{email || 'your email'}</span>.
               </p>
               
-              <div className="w-full p-4 rounded-xl bg-[#1c1e22] border border-[#2c2f35] text-left mb-6 space-y-2">
-                <div className="text-xs text-[#7d818e] uppercase font-semibold">Immediate Download Archives:</div>
-                {items.map((item) => (
-                  <div key={item.product.id} className="flex items-center justify-between py-1.5 border-b border-[#272a30] last:border-0 text-xs">
-                    <span className="text-[#eae7e1] truncate pr-2">{item.product.title}</span>
-                    <button 
-                      onClick={() => alert(`Starting download of ${item.product.title} (${item.product.fileSize})`)}
-                      className="px-2.5 py-1 rounded bg-[#c8a265] text-[#141413] font-semibold flex items-center gap-1 shrink-0 hover:bg-[#dfb776] cursor-pointer"
-                    >
-                      <span className="material-symbols-outlined text-[14px]">download</span> .ZIP
-                    </button>
-                  </div>
-                ))}
+              <div className="w-full p-4 rounded-xl bg-[#1c1e22] border border-[#2c2f35] text-left mb-4 space-y-2">
+                <div className="flex items-center justify-between text-xs text-[#7d818e] uppercase font-semibold">
+                  <span>Immediate Download Archives:</span>
+                  <span className="text-[11px] font-mono text-[#c8a265]">Single-Seat License</span>
+                </div>
+                {items.map((item) => {
+                  const isDownloaded = !!downloadedItems[item.product.id];
+                  return (
+                    <div key={item.product.id} className="flex items-center justify-between py-2 border-b border-[#272a30] last:border-0 text-xs">
+                      <div className="min-w-0 pr-2">
+                        <span className="text-[#eae7e1] font-medium truncate block">{item.product.title}</span>
+                        <span className="text-[10px] text-[#8e929f] font-mono">{item.product.fileSize} · Commercial Package</span>
+                      </div>
+                      <button 
+                        type="button"
+                        onClick={() => handleDownloadItem(item.product.title, item.product.fileSize, item.product.id)}
+                        className={`px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1 shrink-0 transition-all cursor-pointer ${
+                          isDownloaded 
+                            ? 'bg-[#253229] text-[#69d78e] border border-[#375240]' 
+                            : 'bg-[#c8a265] text-[#141413] hover:bg-[#dfb776] shadow-sm'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-[14px]">
+                          {isDownloaded ? 'check' : 'download'}
+                        </span>
+                        <span>{isDownloaded ? 'Downloaded' : 'Download .ZIP'}</span>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
 
+              {items.length > 1 && (
+                <button
+                  type="button"
+                  onClick={handleDownloadAll}
+                  className="w-full py-2.5 mb-3 rounded-xl bg-[#26282e] hover:bg-[#31343c] text-[#c8a265] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[#3b3e47] cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[16px]">folder_zip</span>
+                  Download All Packages ({items.length} Files)
+                </button>
+              )}
+
               <button
+                type="button"
                 onClick={handleReset}
                 className="w-full py-3 rounded-full bg-[#24262b] hover:bg-[#2f3239] text-[#eae7e1] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
               >
@@ -169,17 +264,30 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
               {/* Instant Checkout Form */}
               <form onSubmit={handleCheckoutSubmit} className="mt-4 pt-4 border-t border-[#292c32] space-y-3">
-                <span className="text-[11px] uppercase tracking-wider text-[#c8a265] font-semibold block">Checkout Recipient</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-wider text-[#c8a265] font-semibold block">Checkout Recipient</span>
+                  <span className="text-[10px] text-[#8e929f] font-mono">Immediate link delivery</span>
+                </div>
                 <div>
                   <label className="text-[11px] text-[#868a97] block mb-1">Architect / Studio Work Email *</label>
                   <input
                     type="email"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (emailError) setEmailError(false);
+                    }}
                     placeholder="architect@studio.com"
-                    className="w-full px-3 py-2 rounded-lg bg-[#111213] border border-[#2e3137] text-xs text-[#eae7e1] focus:outline-none focus:border-[#c8a265]"
+                    className={`w-full px-3 py-2 rounded-lg bg-[#111213] border text-xs text-[#eae7e1] focus:outline-none transition-colors ${
+                      emailError ? 'border-[#e05d52] ring-1 ring-[#e05d52]' : 'border-[#2e3137] focus:border-[#c8a265]'
+                    }`}
                   />
+                  {emailError && (
+                    <span className="text-[10px] text-[#e05d52] mt-1 block">
+                      Please enter a valid work email to receive your license files.
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label className="text-[11px] text-[#868a97] block mb-1">Practice / Company Name (Optional for Invoice)</label>
@@ -208,7 +316,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <span className="font-mono text-lg text-[#c8a265]">${subtotal.toFixed(2)}</span>
             </div>
             <button
-              onClick={handleCheckoutSubmit}
+              onClick={() => handleCheckoutSubmit()}
               className="w-full py-3.5 rounded-full bg-[#c8a265] hover:bg-[#dfb776] text-[#141413] font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
             >
               <span className="material-symbols-outlined text-[18px]">lock</span>

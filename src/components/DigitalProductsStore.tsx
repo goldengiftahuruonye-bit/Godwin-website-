@@ -56,8 +56,11 @@ export const DigitalProductsStore: React.FC<DigitalProductsStoreProps> = ({
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={400}
+                      height={300}
                       loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {product.badge && (
                       <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#1b1c1e] text-[#c8a265] text-[10px] font-semibold tracking-wide shadow-sm">
