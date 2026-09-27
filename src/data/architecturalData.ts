@@ -2,12 +2,15 @@ import { Project, DigitalProduct, PeerReview, FaqItem } from '../types/architect
 
 import architectPortrait from '../assets/images/architect_portrait_1790154927894.jpg';
 import brutalistPavilion from '../assets/images/brutalist_concrete_pavilion_1790154942499.jpg';
-import monolithicStone from '../assets/images/monolithic_stone_residence_1790154954321.jpg';
 import timberPavilion from '../assets/images/sculptural_timber_pavilion_1790154966153.jpg';
 import axonometricDrawing from '../assets/images/axonometric_blueprint_drawing_1790154990027.jpg';
-import basaltInterior from '../assets/images/basalt_residence_interior_1790155040700.jpg';
 import parametricFacade from '../assets/images/parametric_facade_tower_1790155051340.jpg';
 import studioCritiqueVideo from '../assets/images/architect_studio_critique_1790155002878.jpg';
+
+import obsidianGrandSalon from '../assets/images/obsidian_salon_acoustic_slats_1790529197403.jpg';
+import obsidianDiningSalon from '../assets/images/obsidian_dining_fluted_salon_1790529208299.jpg';
+import obsidianSanctuarySuite from '../assets/images/obsidian_sanctuary_bedroom_1790529218498.jpg';
+import obsidianPenthouseAtrium from '../assets/images/obsidian_penthouse_atrium_1790529229025.jpg';
 
 import archDetailsCover from '../assets/images/arch_details_cover_1790155067351.jpg';
 import parametricFacadeCover from '../assets/images/parametric_facade_cover_1790155077625.jpg';
@@ -44,10 +47,70 @@ export const ARCHITECT_INFO = {
 
 export const FEATURED_PROJECTS: Project[] = [
   {
+    id: 'obsidian-grand-salon',
+    title: 'Obsidian Slat Residence — Grand Salon',
+    subtitle: 'Vertical acoustic timber louvers & recessed linear light choreography',
+    category: 'Residential',
+    year: '2025',
+    location: 'Zurich Berg, Switzerland',
+    area: '540 m²',
+    client: 'Private Commission',
+    materials: ['Acoustic Dark Oak Slats', 'Blackened Steel Reveals', 'Honed Basalt'],
+    description: 'A sanctuary of shadow and warmth, featuring rhythmic acoustic dark timber louvers, linear recessed ceiling light channels, and low-slung modular seating.',
+    fullNarrative: 'Engineered with sound-diffusing micro-perforated timber blades and integrated 2700K indirect LED profiles. The space balances deep charcoal tones with warm ambient reflections across polished dark flooring.',
+    image: obsidianGrandSalon,
+    photographerCredit: 'Godwin Studio Archive'
+  },
+  {
+    id: 'obsidian-dining-salon',
+    title: 'Basalt & Fluted Timber Dining Pavilion',
+    subtitle: 'Concealed ambient cove illumination & monolithic stone dining plane',
+    category: 'Residential',
+    year: '2025',
+    location: 'Engadin Valley, Switzerland',
+    area: '380 m²',
+    client: 'Alpine Arts Patron',
+    materials: ['Honed Black Granite', 'Fluted Charcoal Walnut', 'Architectural Bronze'],
+    description: 'An intimate dining and reception salon clad in precision-milled fluted acoustic timber, anchored by a monolithic honed granite table with soft under-counter illumination.',
+    fullNarrative: 'Custom millwork panels integrate concealed climate diffusers and acoustic insulation backing. Dimmable warm cove lighting creates a contemplative, elevated atmosphere for evening discourse.',
+    image: obsidianDiningSalon,
+    photographerCredit: 'Lucia Soriano'
+  },
+  {
+    id: 'obsidian-sanctuary-suite',
+    title: 'Acoustic Slatted Sanctuary Suite',
+    subtitle: 'Minimalist master suite with integrated halo timber headboard',
+    category: 'Residential',
+    year: '2024',
+    location: 'Oslo, Norway',
+    area: '290 m²',
+    client: 'Private Collector',
+    materials: ['Dark Smoked Oak Louvers', 'Textured Charcoal Lime Plaster', 'Cast Bronze'],
+    description: 'A private bedroom haven characterized by vertical timber slat textures, concealed halo perimeter illumination, and a low platform bed resting on dark flooring.',
+    fullNarrative: 'Designed around diurnal circadian rhythms, where recessed ceiling channels and indirect vertical headboard backlights deliver a restful, sensory retreat free of visual clutter.',
+    image: obsidianSanctuarySuite,
+    photographerCredit: 'Einar Lindqvist'
+  },
+  {
+    id: 'obsidian-penthouse-atrium',
+    title: 'Monolithic Double-Height Penthouse Atrium',
+    subtitle: 'Monumental acoustic timber feature wall & cantilevered tread lighting',
+    category: 'Residential',
+    year: '2025',
+    location: 'Manhattan, New York',
+    area: '760 m²',
+    client: 'Godwin Private Client',
+    materials: ['Two-Storey Timber Slat Wall', 'Smoked Glass', 'Basalt Floor Slabs'],
+    description: 'An expansive double-height living atrium framed by monumental dark acoustic timber blades, sculptural geometry, and illuminated floating stairs.',
+    fullNarrative: 'A masterclass in volumetric drama, featuring custom linear ceiling lighting grids, low-profile designer lounge elements, and seamless materiality running through both levels.',
+    image: obsidianPenthouseAtrium,
+    photographerCredit: 'Marc Schweizer'
+  },
+  {
     id: 'nordic-pavilion',
     title: 'Nordic Forest Pavilion',
     subtitle: 'Board-formed concrete & cantilevered glass reflecting pool',
-    category: 'Residential',
+    category: 'Pavilion',
     year: '2025',
     location: 'Vestfold, Norway',
     area: '480 m²',
@@ -57,21 +120,6 @@ export const FEATURED_PROJECTS: Project[] = [
     fullNarrative: 'The residence is formed from in-situ basalt aggregate concrete with custom horizontal timber formwork. Floor-to-ceiling triple glazing frames 180-degree fjord panoramas while integrated geothermal mass warms the stone floor slabs year-round.',
     image: brutalistPavilion,
     photographerCredit: 'Einar Lindqvist'
-  },
-  {
-    id: 'travertine-villa',
-    title: 'Travertine Courtyard House',
-    subtitle: 'Monolithic limestone planes with diagonal light well shaft',
-    category: 'Residential',
-    year: '2024',
-    location: 'Majorca, Spain',
-    area: '620 m²',
-    client: 'Heritage Arts Foundation',
-    materials: ['Roman Travertine', 'Cast Bronze Hardware', 'Lime Plaster'],
-    description: 'A subterranean courtyard residence organized around three sequential light courtyards that temper Mediterranean heat through convective passive ventilation.',
-    fullNarrative: 'Every limestone block was dry-jointed with seismic pins to achieve continuous razor-sharp reveals. Sunlight traverses the textured internal walls across the day, converting the living atrium into a monumental sundial.',
-    image: monolithicStone,
-    photographerCredit: 'Lucia Soriano'
   },
   {
     id: 'timber-canopy',
@@ -102,21 +150,6 @@ export const FEATURED_PROJECTS: Project[] = [
     fullNarrative: 'Detailed section analysis published in the Architectural Association Journal, demonstrating how concealed mechanical shafts can double as natural acoustic baffle resonators.',
     image: axonometricDrawing,
     photographerCredit: 'Atelier Godwin Archive'
-  },
-  {
-    id: 'basalt-residence',
-    title: 'Vals Alpine Sanctuary Interior',
-    subtitle: 'Thermal stone living pavilion with fluted oak joinery',
-    category: 'Residential',
-    year: '2023',
-    location: 'Vals, Switzerland',
-    area: '390 m²',
-    client: 'Private Commission',
-    materials: ['Vals Quartzite', 'Dark Basalt', 'Smoked European Oak'],
-    description: 'Subdued alpine sanctuary sculpted entirely from dark quarry stone and acoustic timber slats, creating a quiet sanctuary against harsh winter snowfields.',
-    fullNarrative: 'The fireplace is carved directly from a single 9-ton boulder of raw quartzite quarried within 2 kilometers of the foundation slab. Integrated brass reveal joints conceal radiant heating plenums.',
-    image: basaltInterior,
-    photographerCredit: 'Marc Schweizer'
   },
   {
     id: 'parametric-facade',
