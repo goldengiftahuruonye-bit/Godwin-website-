@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CartItem } from '../../types/architecture';
+import { CartItem, DigitalProduct } from '../../types/architecture';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -49,55 +49,41 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }, 1200);
   };
 
-  const handleDownloadItem = (productTitle: string, fileSize: string, productId: string) => {
-    const packageManifest = `========================================================================
-ATELIER RICHARD GODWIN & SPATIAL SYSTEMS
-COMMERCIAL BIM & CAD TOOLKIT DISTRIBUTION
-========================================================================
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-Package: ${productTitle}
-Archive Package Size: ${fileSize}
-License Key: ATELIER-GODWIN-${Math.random().toString(36).substring(2, 10).toUpperCase()}-2026
-Licensee: ${email || 'Verified Purchaser'}
-Studio Entity: ${studioName || 'Single-Practice Commercial License'}
-Issued At: ${new Date().toUTCString()}
+  const handleDownloadItem = (product: DigitalProduct) => {
+    const downloadUrl = product.downloadUrl || `/downloads/${product.id}.zip`;
+    const filename = product.downloadFilename || `${product.id}.zip`;
 
-INCLUDED ARCHITECTURAL ARTIFACTS:
-------------------------------------------------------------------------
-1. /BIM_Assemblies/
-   - Autodesk Revit 2026 (.RVT parametric families)
-   - IFC 4.3 OpenBIM Schema (.IFC standardized data)
-2. /Parametric_Computational_Scripts/
-   - Rhino 8 Grasshopper Definitions (.GH / .GHX)
-3. /Tectonic_Detail_Drawings/
-   - Construction Documentation (.DWG / .DXF / Vector .PDF)
-4. /Materiality_Shaders/
-   - PBR 8K Textures & Shaders (V-Ray 6, Enscape 4, Twinmotion)
-5. /Documentation/
-   - Architectural Technical Specification Handbook (140+ Pages)
-
-TECHNICAL ASSISTANCE & CUSTOM WORK:
-Direct Atelier Desk: goldengiftahuruonye@gmail.com
-Studio Offices: Zurich Berg, Switzerland & SoHo, New York
-========================================================================`;
-
-    const blob = new Blob([packageManifest], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = url;
-    link.download = `${productTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}_package.txt`;
+    link.href = downloadUrl;
+    link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
 
-    setDownloadedItems((prev) => ({ ...prev, [productId]: true }));
+    setDownloadedItems((prev) => ({ ...prev, [product.id]: true }));
   };
 
   const handleDownloadAll = () => {
+    const masterSuiteUrl = '/downloads/richard_godwin_complete_architectural_suite.zip';
+    const link = document.createElement('a');
+    link.href = masterSuiteUrl;
+    link.download = 'richard_godwin_complete_architectural_suite.zip';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     items.forEach((item) => {
-      handleDownloadItem(item.product.title, item.product.fileSize, item.product.id);
+      setDownloadedItems((prev) => ({ ...prev, [item.product.id]: true }));
     });
+  };
+
+  const handleCopyUrl = (url: string, id: string) => {
+    const fullUrl = window.location.origin + url;
+    navigator.clipboard.writeText(fullUrl);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2500);
   };
 
   const handleReset = () => {
@@ -147,47 +133,89 @@ Studio Offices: Zurich Berg, Switzerland & SoHo, New York
                 Your instant download links and VAT license receipt have been dispatched to <span className="text-[#eae7e1] font-mono">{email || 'your email'}</span>.
               </p>
               
-              <div className="w-full p-4 rounded-xl bg-[#1c1e22] border border-[#2c2f35] text-left mb-4 space-y-2">
+              <div className="w-full p-4 rounded-xl bg-[#1c1e22] border border-[#2c2f35] text-left mb-4 space-y-3">
                 <div className="flex items-center justify-between text-xs text-[#7d818e] uppercase font-semibold">
                   <span>Immediate Download Archives:</span>
                   <span className="text-[11px] font-mono text-[#c8a265]">Single-Seat License</span>
                 </div>
                 {items.map((item) => {
                   const isDownloaded = !!downloadedItems[item.product.id];
+                  const downloadUrl = item.product.downloadUrl || `/downloads/${item.product.id}.zip`;
+                  const downloadFilename = item.product.downloadFilename || `${item.product.id}.zip`;
+                  const isCopied = copiedId === item.product.id;
+
                   return (
-                    <div key={item.product.id} className="flex items-center justify-between py-2 border-b border-[#272a30] last:border-0 text-xs">
-                      <div className="min-w-0 pr-2">
-                        <span className="text-[#eae7e1] font-medium truncate block">{item.product.title}</span>
-                        <span className="text-[10px] text-[#8e929f] font-mono">{item.product.fileSize} · Commercial Package</span>
+                    <div key={item.product.id} className="py-2.5 border-b border-[#272a30] last:border-0 text-xs flex flex-col gap-1.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="min-w-0 pr-2">
+                          <span className="text-[#eae7e1] font-medium truncate block">{item.product.title}</span>
+                          <span className="text-[10px] text-[#8e929f] font-mono">{item.product.fileSize} · Real .ZIP Archive</span>
+                        </div>
+                        <a 
+                          href={downloadUrl}
+                          download={downloadFilename}
+                          onClick={() => setDownloadedItems((prev) => ({ ...prev, [item.product.id]: true }))}
+                          className={`px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1 shrink-0 transition-all cursor-pointer no-underline ${
+                            isDownloaded 
+                              ? 'bg-[#253229] text-[#69d78e] border border-[#375240]' 
+                              : 'bg-[#c8a265] text-[#141413] hover:bg-[#dfb776] shadow-sm'
+                          }`}
+                        >
+                          <span className="material-symbols-outlined text-[14px]">
+                            {isDownloaded ? 'check' : 'download'}
+                          </span>
+                          <span>{isDownloaded ? 'Downloaded' : 'Download .ZIP'}</span>
+                        </a>
                       </div>
-                      <button 
-                        type="button"
-                        onClick={() => handleDownloadItem(item.product.title, item.product.fileSize, item.product.id)}
-                        className={`px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1 shrink-0 transition-all cursor-pointer ${
-                          isDownloaded 
-                            ? 'bg-[#253229] text-[#69d78e] border border-[#375240]' 
-                            : 'bg-[#c8a265] text-[#141413] hover:bg-[#dfb776] shadow-sm'
-                        }`}
-                      >
-                        <span className="material-symbols-outlined text-[14px]">
-                          {isDownloaded ? 'check' : 'download'}
+
+                      {/* Direct URL with Copy option */}
+                      <div className="flex items-center justify-between bg-[#141517] px-2.5 py-1.5 rounded-lg border border-[#23252a] text-[10px] text-[#7d818e] font-mono">
+                        <span className="truncate max-w-[210px] text-[#9ca0ae]" title={downloadUrl}>
+                          {downloadUrl}
                         </span>
-                        <span>{isDownloaded ? 'Downloaded' : 'Download .ZIP'}</span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => handleCopyUrl(downloadUrl, item.product.id)}
+                          className="hover:text-[#c8a265] transition-colors flex items-center gap-1 cursor-pointer ml-2 shrink-0"
+                        >
+                          <span className="material-symbols-outlined text-[12px]">
+                            {isCopied ? 'check' : 'content_copy'}
+                          </span>
+                          <span>{isCopied ? 'Copied' : 'Copy Link'}</span>
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
               </div>
 
               {items.length > 1 && (
-                <button
-                  type="button"
-                  onClick={handleDownloadAll}
-                  className="w-full py-2.5 mb-3 rounded-xl bg-[#26282e] hover:bg-[#31343c] text-[#c8a265] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[#3b3e47] cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-[16px]">folder_zip</span>
-                  Download All Packages ({items.length} Files)
-                </button>
+                <div className="w-full mb-3 flex flex-col gap-1.5">
+                  <a
+                    href="/downloads/richard_godwin_complete_architectural_suite.zip"
+                    download="richard_godwin_complete_architectural_suite.zip"
+                    onClick={handleDownloadAll}
+                    className="w-full py-2.5 rounded-xl bg-[#26282e] hover:bg-[#31343c] text-[#c8a265] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[#3b3e47] cursor-pointer no-underline"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">folder_zip</span>
+                    Download All Packages (.ZIP Master Bundle)
+                  </a>
+                  <div className="flex items-center justify-between bg-[#141517] px-2.5 py-1.5 rounded-lg border border-[#23252a] text-[10px] text-[#7d818e] font-mono">
+                    <span className="truncate max-w-[210px] text-[#9ca0ae]">
+                      /downloads/richard_godwin_complete_architectural_suite.zip
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyUrl('/downloads/richard_godwin_complete_architectural_suite.zip', 'all')}
+                      className="hover:text-[#c8a265] transition-colors flex items-center gap-1 cursor-pointer ml-2 shrink-0"
+                    >
+                      <span className="material-symbols-outlined text-[12px]">
+                        {copiedId === 'all' ? 'check' : 'content_copy'}
+                      </span>
+                      <span>{copiedId === 'all' ? 'Copied' : 'Copy Link'}</span>
+                    </button>
+                  </div>
+                </div>
               )}
 
               <button

@@ -30,6 +30,8 @@ export interface DigitalProduct {
   fileSize: string;
   modulesOrPages: string;
   whatsIncluded: string[];
+  downloadUrl?: string;
+  downloadFilename?: string;
 }
 
 export interface CartItem {

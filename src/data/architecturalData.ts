@@ -177,6 +177,8 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     image: '/Art Collection 1.png',
     webpImage: '/Art Collection 1.webp',
     srcsetWebp: '/Art Collection 1-400.webp 400w, /Art Collection 1-800.webp 800w, /Art Collection 1.webp 1800w',
+    downloadUrl: '/downloads/revit-detail-library.zip',
+    downloadFilename: 'architectural_detail_standard_library_2026.zip',
     fileSize: '1.42 GB .ZIP',
     modulesOrPages: '180+ Parametric Assemblies',
     whatsIncluded: [
@@ -199,6 +201,8 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     image: '/Art Collection 2.png',
     webpImage: '/Art Collection 2.webp',
     srcsetWebp: '/Art Collection 2-400.webp 400w, /Art Collection 2-800.webp 800w, /Art Collection 2.webp 1800w',
+    downloadUrl: '/downloads/parametric-facade-toolkit.zip',
+    downloadFilename: 'parametric_interior_curved_joinery_toolkit.zip',
     fileSize: '840 MB .ZIP',
     modulesOrPages: '400+ Algorithmic Nodes',
     whatsIncluded: [
@@ -220,6 +224,8 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     image: '/Art Collection 3.png',
     webpImage: '/Art Collection 3.webp',
     srcsetWebp: '/Art Collection 3-400.webp 400w, /Art Collection 3-800.webp 800w, /Art Collection 3.webp 1800w',
+    downloadUrl: '/downloads/studio-practice-os.zip',
+    downloadFilename: 'double_height_timber_pavilion_blueprint_set.zip',
     fileSize: '620 MB Package',
     modulesOrPages: '36 High-Res Sheets',
     whatsIncluded: [
@@ -241,6 +247,8 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     image: '/Art Collection 4.png',
     webpImage: '/Art Collection 4.webp',
     srcsetWebp: '/Art Collection 4-400.webp 400w, /Art Collection 4-800.webp 800w, /Art Collection 4.webp 1800w',
+    downloadUrl: '/downloads/tectonic-handbook.zip',
+    downloadFilename: 'tectonic_fluted_timber_mezzanine_specification.zip',
     fileSize: '310 MB High-Res PDF',
     modulesOrPages: '140 Pages (180mm x 240mm)',
     whatsIncluded: [
