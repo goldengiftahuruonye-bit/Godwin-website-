@@ -35,6 +35,21 @@ export default defineConfig(() => {
           return transformed;
         },
       },
+      {
+        name: 'vite-cache-headers-plugin',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            const url = req.url || '';
+            // Cache static assets (images, fonts, scripts, styles, media)
+            if (url.match(/\.(png|jpg|jpeg|webp|avif|svg|woff2?|ttf|css|js|mp4|webm|ico)$/i) || url.includes('/assets/')) {
+              res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+            } else if (url === '/' || url.endsWith('.html')) {
+              res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+            }
+            next();
+          });
+        },
+      },
     ],
     resolve: {
       alias: {
@@ -52,7 +67,7 @@ export default defineConfig(() => {
             if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
               return 'vendor-react';
             }
-            if (id.includes('node_modules/framer-motion/')) {
+            if (id.includes('node_modules/motion/') || id.includes('node_modules/framer-motion/')) {
               return 'vendor-motion';
             }
           },

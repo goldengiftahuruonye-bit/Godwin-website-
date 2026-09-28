@@ -50,11 +50,27 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
           {/* Product Hero preview */}
           <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-[#202227] border border-[#2c2f36] mb-4">
-            <img 
-              src={product.image} 
-              alt={product.title} 
-              className="w-full h-full object-cover" 
-            />
+            <picture className="w-full h-full block">
+              {product.srcsetWebp && (
+                <source
+                  type="image/webp"
+                  srcSet={product.srcsetWebp}
+                  sizes="(max-width: 640px) 100vw, 640px"
+                />
+              )}
+              {product.webpImage && !product.srcsetWebp && (
+                <source type="image/webp" srcSet={product.webpImage} />
+              )}
+              <img 
+                src={product.image} 
+                alt={product.title} 
+                width={640}
+                height={360}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover" 
+              />
+            </picture>
           </div>
 
           <h3 className="text-xl font-bold text-[#f5f4ef] font-serif mb-2">{product.title}</h3>

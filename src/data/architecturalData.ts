@@ -12,10 +12,6 @@ import obsidianDiningSalon from '../assets/images/obsidian_dining_fluted_salon_1
 import obsidianSanctuarySuite from '../assets/images/obsidian_sanctuary_bedroom_1790529218498.jpg';
 import obsidianPenthouseAtrium from '../assets/images/obsidian_penthouse_atrium_1790529229025.jpg';
 
-import geometricDarkInteriorCover from '../assets/images/toolkit_geometric_dark_interior_1790529764672.jpg';
-import organicPebbleLoungeCover from '../assets/images/toolkit_organic_pebble_lounge_1790529776003.jpg';
-import timberPavilionFireplaceCover from '../assets/images/toolkit_timber_pavilion_fireplace_1790529785796.jpg';
-import mezzanineSlatVillaCover from '../assets/images/toolkit_mezzanine_slat_villa_1790529796141.jpg';
 import rgLogoImg from '../assets/images/rg_gold_crest_dark_bg_1790532962503.jpg';
 
 export const ARCHITECT_INFO = {
@@ -178,7 +174,9 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     originalPrice: 199.00,
     badge: 'Bestseller',
     format: ['RVT (Revit 2023-2026)', 'DWG', 'DXF', 'Vector PDF'],
-    image: geometricDarkInteriorCover,
+    image: '/Art Collection 1.png',
+    webpImage: '/Art Collection 1.webp',
+    srcsetWebp: '/Art Collection 1-400.webp 400w, /Art Collection 1-800.webp 800w, /Art Collection 1.webp 1800w',
     fileSize: '1.42 GB .ZIP',
     modulesOrPages: '180+ Parametric Assemblies',
     whatsIncluded: [
@@ -198,7 +196,9 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     originalPrice: 120.00,
     badge: 'New Release',
     format: ['Grasshopper (.GH)', 'Rhino 7/8 (.3DM)', 'IFC Export Script'],
-    image: organicPebbleLoungeCover,
+    image: '/Art Collection 2.png',
+    webpImage: '/Art Collection 2.webp',
+    srcsetWebp: '/Art Collection 2-400.webp 400w, /Art Collection 2-800.webp 800w, /Art Collection 2.webp 1800w',
     fileSize: '840 MB .ZIP',
     modulesOrPages: '400+ Algorithmic Nodes',
     whatsIncluded: [
@@ -217,7 +217,9 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     originalPrice: 75.00,
     badge: 'Essential',
     format: ['Revit / BIM', 'DWG Blueprints', 'Vector PDF Set'],
-    image: timberPavilionFireplaceCover,
+    image: '/Art Collection 3.png',
+    webpImage: '/Art Collection 3.webp',
+    srcsetWebp: '/Art Collection 3-400.webp 400w, /Art Collection 3-800.webp 800w, /Art Collection 3.webp 1800w',
     fileSize: '620 MB Package',
     modulesOrPages: '36 High-Res Sheets',
     whatsIncluded: [
@@ -236,7 +238,9 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     originalPrice: 45.00,
     badge: 'Print & Digital',
     format: ['Interactive PDF', 'ePub', 'Specification Word Docs'],
-    image: mezzanineSlatVillaCover,
+    image: '/Art Collection 4.png',
+    webpImage: '/Art Collection 4.webp',
+    srcsetWebp: '/Art Collection 4-400.webp 400w, /Art Collection 4-800.webp 800w, /Art Collection 4.webp 1800w',
     fileSize: '310 MB High-Res PDF',
     modulesOrPages: '140 Pages (180mm x 240mm)',
     whatsIncluded: [

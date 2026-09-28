@@ -141,11 +141,12 @@ export default function App() {
     setSelectedProject(FEATURED_PROJECTS[nextIndex]);
   };
 
-  // Smooth scrolling helpers
+  // Smooth scrolling helpers respecting user motion preferences
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
     }
   };
 

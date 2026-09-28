@@ -223,11 +223,20 @@ Studio Offices: Zurich Berg, Switzerland & SoHo, New York
                     className="p-3.5 rounded-xl bg-[#1d1f23] border border-[#2b2d34] flex gap-3 items-center justify-between"
                   >
                     <div className="w-14 h-14 rounded-lg overflow-hidden bg-[#24262b] shrink-0 border border-[#32353d]">
-                      <img 
-                        src={item.product.image} 
-                        alt={item.product.title} 
-                        className="w-full h-full object-cover"
-                      />
+                      <picture className="w-full h-full block">
+                        {item.product.webpImage && (
+                          <source type="image/webp" srcSet={item.product.webpImage} />
+                        )}
+                        <img 
+                          src={item.product.image} 
+                          alt={item.product.title} 
+                          width={56}
+                          height={56}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                        />
+                      </picture>
                     </div>
                     <div className="flex-1 min-w-0 pr-2">
                       <h5 className="text-xs font-semibold text-[#f5f4ef] truncate">{item.product.title}</h5>

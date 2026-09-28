@@ -25,10 +25,13 @@ export const Header: React.FC<HeaderProps> = ({
   const [activeSection, setActiveSection] = useState<string>('about-studio');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Monitor scroll state for subtle shadow & active section tracking
+  // Monitor scroll state with requestAnimationFrame throttling for butter-smooth scrolling
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    let ticking = false;
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
 
       const sections = [
         'about-studio',
@@ -39,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
         'faq-section',
       ];
 
-      const scrollPosition = window.scrollY + 180;
+      const scrollPosition = scrollY + 180;
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -51,9 +54,18 @@ export const Header: React.FC<HeaderProps> = ({
           }
         }
       }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

@@ -97,8 +97,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
                   <img
                     src={project.image}
                     alt={project.title}
+                    width={1000}
+                    height={625}
                     className="w-full h-full object-cover select-none"
                     loading="eager"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     draggable={false}
                   />

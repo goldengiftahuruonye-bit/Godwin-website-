@@ -53,15 +53,27 @@ export const DigitalProductsStore: React.FC<DigitalProductsStoreProps> = ({
                 <div className="flex flex-col gap-3">
                   {/* Product Cover Artwork */}
                   <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-[#e0d8cc] border border-[#d5cbbe]">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      width={400}
-                      height={300}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <picture className="w-full h-full block">
+                      {product.srcsetWebp && (
+                        <source
+                          type="image/webp"
+                          srcSet={product.srcsetWebp}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        />
+                      )}
+                      {product.webpImage && !product.srcsetWebp && (
+                        <source type="image/webp" srcSet={product.webpImage} />
+                      )}
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        width={400}
+                        height={300}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </picture>
                     {product.badge && (
                       <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#1b1c1e] text-[#c8a265] text-[10px] font-semibold tracking-wide shadow-sm">
                         {product.badge}

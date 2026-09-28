@@ -25,6 +25,8 @@ export interface DigitalProduct {
   badge?: string;
   format: string[];
   image: string;
+  webpImage?: string;
+  srcsetWebp?: string;
   fileSize: string;
   modulesOrPages: string;
   whatsIncluded: string[];

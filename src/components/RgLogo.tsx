@@ -44,6 +44,10 @@ export const RgLogo: React.FC<RgLogoProps> = ({
       <img
         src={ARCHITECT_INFO.logo}
         alt="Richard Godwin Architecture Logo"
+        width={64}
+        height={64}
+        loading="eager"
+        decoding="async"
         referrerPolicy="no-referrer"
         className="w-full h-full object-cover object-center select-none"
       />
