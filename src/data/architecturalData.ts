@@ -16,7 +16,7 @@ import geometricDarkInteriorCover from '../assets/images/toolkit_geometric_dark_
 import organicPebbleLoungeCover from '../assets/images/toolkit_organic_pebble_lounge_1790529776003.jpg';
 import timberPavilionFireplaceCover from '../assets/images/toolkit_timber_pavilion_fireplace_1790529785796.jpg';
 import mezzanineSlatVillaCover from '../assets/images/toolkit_mezzanine_slat_villa_1790529796141.jpg';
-import rgLogoImg from '../assets/images/architect_rg_logo_1790397494050.jpg';
+import rgLogoImg from '../assets/images/rg_gold_crest_dark_bg_1790532962503.jpg';
 
 export const ARCHITECT_INFO = {
   name: 'Richard Godwin',
